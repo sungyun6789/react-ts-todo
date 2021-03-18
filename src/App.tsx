@@ -1,7 +1,8 @@
 import React from 'react';
+import TodoApp from './containers/TodoApp';
 
 const App: React.FC = () => {
-  return <div>Hello World</div>;
+  return <TodoApp />;
 };
 
 export default App;
