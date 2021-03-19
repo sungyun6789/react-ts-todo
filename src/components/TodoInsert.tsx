@@ -1,13 +1,17 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../module/todos';
 
-type TodoInsertProps = {
-  onInsert: (text: string) => void;
-};
-
-const TodoInsert = ({ onInsert }: TodoInsertProps) => {
+const TodoInsert = () => {
   const [value, setValue] = useState('');
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
+  };
+
+  const dispatch = useDispatch();
+
+  const onInsert = (text: string) => {
+    dispatch(addTodo(text));
   };
 
   const onSubmit = (e: FormEvent) => {

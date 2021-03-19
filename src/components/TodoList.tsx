@@ -1,14 +1,21 @@
 import React from 'react';
-import { Todo } from '../module/todos';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../module';
+import { removeTodo, toggleTodo } from '../module/todos';
 import TodoItem from './TodoItem';
 
-type TodoListProps = {
-  todos: Todo[];
-  onToggle: (id: number) => void;
-  onRemove: (id: number) => void;
-};
+const TodoList = () => {
+  const todos = useSelector((state: RootState) => state.todos);
+  const dispatch = useDispatch();
 
-const TodoList = ({ todos, onToggle, onRemove }: TodoListProps) => {
+  const onToggle = (id: number) => {
+    dispatch(toggleTodo(id));
+  };
+
+  const onRemove = (id: number) => {
+    dispatch(removeTodo(id));
+  };
+
   if (todos.length === 0) return <p>등록된 항목이 없습니다.</p>;
   return (
     <ul>
